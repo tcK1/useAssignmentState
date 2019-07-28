@@ -1,41 +1,29 @@
 {
   "name": "use-assignment-state",
   "version": "1.0.0",
-  "description": "React hook that give you the ability to have an state object that can perform changes with an assignment call.",
-  "author": "tcK1",
-  "license": "MIT",
-  "repository": "tcK1/useAssignmentState",
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
-  "engines": {
-    "node": ">=8",
-    "npm": ">=5"
-  },
+  "module": "dist/index.js",
+  "repository": "https://github.com/tcK1/useAssignmentState.git",
+  "author": "Kaic Bastidas <kaicbastidas@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "build": "rollup -c",
-    "start": "rollup -c -w"
+    "dev": "rollup -c -w"
   },
-  "peerDependencies": {
+  "dependencies": {
     "react": "^16.8.6"
   },
   "devDependencies": {
-    "@babel/core": "latest",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "babel-eslint": "^10.0.1",
-    "cross-env": "^5.2.0",
-    "eslint": "5.16.0",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.1",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.14.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-import": "^2.13.0",
-    "react": "^16.8.6",
-    "rollup": "^1.1.2",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-url": "^2.1.0"
+    "rollup": "^1.16.3",
+    "rollup-plugin-babel": "^4.3.3"
   }
 }
