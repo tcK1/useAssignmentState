@@ -1,34 +1,45 @@
-# use-assignment-state
+# useAssignmentState &middot; [![NPM](https://img.shields.io/npm/v/use-assignment-state.svg)](https://www.npmjs.com/package/use-assignment-state)
 
-> React hook that give you the ability to have an state object that can perform changes with an assignment call.
+React hook that give you the ability to have an state object that can perform changes with an assignment call.
 
-[![NPM](https://img.shields.io/npm/v/use-assignment-state.svg)](https://www.npmjs.com/package/use-assignment-state) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+I made this hook inspired in the new svelte 3.0 syntax, wich you can look [here](https://svelte.dev/examples#reactive-assignments).
+
+This was created for fun and, to be honest, I don`t really know if you should be using it, but that's your choice.
+
 
 ## Install
 
 ```bash
 npm install --save use-assignment-state
 ```
+or
+```bash
+yarn add use-assignment-state
+```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
-
-import { useMyHook } from 'use-assignment-state'
+import React from 'react'
+import useAssignmentState from 'use-assignment-state'
 
 const Example = () => {
-  const example = useMyHook()
+  const state = useAssignmentState({
+    key: 'val',
+  });
+
   return (
-    <div>{example}</div>
+    <input
+      value={state.key}
+      onChange={(e) => { state.key = e.target.value; }}
+    />
   )
 }
 ```
 
+### More examples
+You can check more examples [here](https://github.com/tcK1/useAssignmentState/blob/master/example/src/index.jsx).
+
 ## License
 
 MIT © [tcK1](https://github.com/tcK1)
-
----
-
-This hook is created using [create-react-hook](https://github.com/hermanya/create-react-hook).
