@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import useAssignmentState from 'use-assignment-state';
 
 const App = () => {
-  const obj = useAssignmentState({
+  const state = useAssignmentState({
     a: 1,
     b: 2,
 
@@ -33,7 +33,7 @@ const App = () => {
     },
   });
 
-  const sum = useMemo(() => (obj.a + obj.b), [obj.a, obj.b]);
+  const sum = useMemo(() => (state.a + state.b), [state.a, state.b]);
 
   return (
     <div
@@ -49,7 +49,7 @@ const App = () => {
         <h1>State Object</h1>
         <pre>
           <code>
-            {JSON.stringify(obj, undefined, 2)}
+            {JSON.stringify(state, undefined, 2)}
           </code>
         </pre>
       </div>
@@ -68,11 +68,11 @@ const App = () => {
             {sum}
           </div>
 
-          <button onClick={() => { obj.a += 1; }} type="button">
-            {obj.a}
+          <button onClick={() => { state.a += 1; }} type="button">
+            {state.a}
           </button>
-          <button onClick={() => { obj.b += 1; }} type="button">
-            {obj.b}
+          <button onClick={() => { state.b += 1; }} type="button">
+            {state.b}
           </button>
         </section>
 
@@ -83,14 +83,14 @@ const App = () => {
           <div>
             number array:
             {' '}
-            {obj.c.map((v, i) => (
+            {state.c.map((v, i) => (
               <div key={v}>
                 {i}
                 :
                 {' '}
                 {v}
                 {' '}
-                <button onClick={() => { obj.c[i] += Math.random(); }} type="button">
+                <button onClick={() => { state.c[i] += Math.random(); }} type="button">
                   add + random!
                 </button>
               </div>
@@ -101,13 +101,13 @@ const App = () => {
 
           <div>
             object array:
-            {obj.d.map(({ name, id }, i) => (
+            {state.d.map(({ name, id }, i) => (
               <div key={id}>
                 name:
                 {' '}
                 {name}
                 <br />
-                <input value={name} onChange={(e) => { obj.d[i].name = e.target.value; }} />
+                <input value={name} onChange={(e) => { state.d[i].name = e.target.value; }} />
               </div>
             ))}
           </div>
@@ -118,8 +118,8 @@ const App = () => {
           <h2>nested objects</h2>
 
           <input
-            value={obj.e.nested.key}
-            onChange={(e) => { obj.e.nested.key = e.target.value; }}
+            value={state.e.nested.key}
+            onChange={(e) => { state.e.nested.key = e.target.value; }}
           />
         </section>
       </div>
