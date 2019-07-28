@@ -36,80 +36,93 @@ const App = () => {
   const sum = useMemo(() => (obj.a + obj.b), [obj.a, obj.b]);
 
   return (
-    <div>
-      <h1>State Object</h1>
-      <pre>
-        <code>
-          {JSON.stringify(obj, undefined, 2)}
-        </code>
-      </pre>
+    <div
+      style={{
+        display: 'flex',
+      }}
+    >
+      <div
+        style={{
+          width: '50%',
+        }}
+      >
+        <h1>State Object</h1>
+        <pre>
+          <code>
+            {JSON.stringify(obj, undefined, 2)}
+          </code>
+        </pre>
+      </div>
 
-      <br />
+      <div>
+        {/* keys */}
+        <section>
+          <h2>Simple keys</h2>
 
-      {/* keys */}
-      <section>
-        <h2>Simple keys</h2>
+          <div>
+            sum (with
+            {' '}
+            <code>useMemo</code>
+            ):
+            {' '}
+            {sum}
+          </div>
 
-        <div>
-          sum (with
-          {' '}
-          <code>useMemo</code>
-          ):
-          {' '}
-          {sum}
-        </div>
+          <button onClick={() => { obj.a += 1; }} type="button">
+            {obj.a}
+          </button>
+          <button onClick={() => { obj.b += 1; }} type="button">
+            {obj.b}
+          </button>
+        </section>
 
-        <button onClick={() => { obj.a += 1; }} type="button">
-          {obj.a}
-        </button>
-        <button onClick={() => { obj.b += 1; }} type="button">
-          {obj.b}
-        </button>
-      </section>
+        {/* arrays */}
+        <section>
+          <h2>Array</h2>
 
-      {/* arrays */}
-      <section>
-        <h2>Array</h2>
+          <div>
+            number array:
+            {' '}
+            {obj.c.map((v, i) => (
+              <div key={v}>
+                {i}
+                :
+                {' '}
+                {v}
+                {' '}
+                <button onClick={() => { obj.c[i] += Math.random(); }} type="button">
+                  add + random!
+                </button>
+              </div>
+            ))}
+          </div>
 
-        <div>
-          number array:
-          {' '}
-          {obj.c}
-          {obj.c.map((v, i) => (
-            <div>
-              {i}
-              :
-              {' '}
-              {v}
-              <button onClick={() => { obj.c[i] += 1; }} type="button">
-                add 1
-              </button>
-            </div>
-          ))}
-        </div>
+          <br />
 
-        <br />
+          <div>
+            object array:
+            {obj.d.map(({ name, id }, i) => (
+              <div key={id}>
+                name:
+                {' '}
+                {name}
+                <br />
+                <input value={name} onChange={(e) => { obj.d[i].name = e.target.value; }} />
+              </div>
+            ))}
+          </div>
+        </section>
 
-        <div>
-          object array:
-          {obj.d.map(({ name, id }, i) => (
-            <div key={id}>
-              name:
-              {' '}
-              {name}
-              <br />
-              <input value={name} onChange={(e) => { obj.d[i].name = e.target.value; }} />
-            </div>
-          ))}
-        </div>
-      </section>
+        {/* nested objects */}
+        <section>
+          <h2>nested objects</h2>
 
-      {/* nested objects */}
-      <section>
-        <h2>nested objects</h2>
-
-        <input value={obj.e.nested.key} onChange={(e) => { obj.e.nested.key = e.target.value; }} />
-      </section>
+          <input
+            value={obj.e.nested.key}
+            onChange={(e) => { obj.e.nested.key = e.target.value; }}
+          />
+        </section>
+      </div>
     </div>
   );
 };
