@@ -14,6 +14,7 @@ const handler = setState => ({
       /* eslint-disable-next-line no-param-reassign */
       obj[prop] = value;
     }
+
     return true;
   },
 });

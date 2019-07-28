@@ -2,8 +2,7 @@
   "name": "use-assignment-state",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "repository": "https://github.com/tcK1/useAssignmentState.git",
+  "repository": "github:tcK1/useAssignmentState",
   "author": "Kaic Bastidas <kaicbastidas@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -24,6 +23,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
     "rollup": "^1.16.3",
-    "rollup-plugin-babel": "^4.3.3"
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-terser": "^5.0.0"
   }
 }
