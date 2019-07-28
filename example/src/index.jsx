@@ -4,84 +4,112 @@ import ReactDOM from 'react-dom';
 import useAssignmentState from 'use-assignment-state';
 
 const App = () => {
-  const obj1 = useAssignmentState({
+  const obj = useAssignmentState({
     a: 1,
     b: 2,
+
     c: [1, 2, 3, 4],
-    d: {
-      eita: 'hmm',
-      mais: {
-        fundo: 'kkk',
+    d: [
+      {
+        id: 1,
+        name: 'Jhon',
+      },
+      {
+        id: 2,
+        name: 'Paul',
+      },
+      {
+        id: 3,
+        name: 'Annie',
+      },
+    ],
+
+    e: {
+      key: 'val',
+
+      nested: {
+        key: 'val',
       },
     },
   });
-  const obj2 = useAssignmentState({ a: 1, c: 3 });
 
-  const sum1 = useMemo(() => {
-    console.log('sum1');
-    return (obj1.a + obj1.b);
-  }, [obj1.a, obj1.b]);
-
-  const sum2 = useMemo(() => {
-    console.log('sum2');
-    return (obj2.a + obj2.c);
-  }, [obj2.a, obj2.c]);
+  const sum = useMemo(() => (obj.a + obj.b), [obj.a, obj.b]);
 
   return (
     <div>
+      <h1>State Object</h1>
       <pre>
         <code>
-          {JSON.stringify(obj1, undefined, 2)}
+          {JSON.stringify(obj, undefined, 2)}
         </code>
       </pre>
-      <div>
-        obj1 sum:
-        {' '}
-        {sum1}
-      </div>
-
-      <button onClick={() => { obj1.a += 1; }} type="button">
-        {obj1.a}
-      </button>
-      <button onClick={() => { obj1.b += 1; }} type="button">
-        {obj1.b}
-      </button>
-      <button onClick={() => { obj1.c[0] += 1; }} type="button">
-        {obj1.c.map(val => val)}
-      </button>
-      <button onClick={() => { obj1.c.reverse(); }} type="button">
-        {obj1.c.map(val => val)}
-      </button>
-      <button onClick={() => { obj1.c = ['outro', 'array']; }} type="button">
-        {obj1.c.map(val => val)}
-      </button>
-      <button onClick={() => { obj1.d.eita = 'eita'; }} type="button">
-        {obj1.d.eita}
-      </button>
-      <button onClick={() => { obj1.d.mais.fundo += 'k'; }} type="button">
-        {obj1.d.mais.fundo}
-      </button>
-      <button onClick={() => { obj1.d.mais = { outro: 'vix' }; }} type="button">
-        {obj1.d.mais.fundo}
-      </button>
-      <button onClick={() => { obj1.e = [1, 2]; }} type="button">
-        {obj1.e}
-      </button>
 
       <br />
 
-      <div>
-        obj2 sum:
-        {' '}
-        {sum2}
-      </div>
+      {/* keys */}
+      <section>
+        <h2>Simple keys</h2>
 
-      <button onClick={() => { obj2.a += 1; }} type="button">
-        {obj2.a}
-      </button>
-      <button onClick={() => { obj2.c += 1; }} type="button">
-        {obj2.c}
-      </button>
+        <div>
+          sum (with
+          {' '}
+          <code>useMemo</code>
+          ):
+          {' '}
+          {sum}
+        </div>
+
+        <button onClick={() => { obj.a += 1; }} type="button">
+          {obj.a}
+        </button>
+        <button onClick={() => { obj.b += 1; }} type="button">
+          {obj.b}
+        </button>
+      </section>
+
+      {/* arrays */}
+      <section>
+        <h2>Array</h2>
+
+        <div>
+          number array:
+          {' '}
+          {obj.c}
+          {obj.c.map((v, i) => (
+            <div>
+              {i}
+              :
+              {' '}
+              {v}
+              <button onClick={() => { obj.c[i] += 1; }} type="button">
+                add 1
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <br />
+
+        <div>
+          object array:
+          {obj.d.map(({ name, id }, i) => (
+            <div key={id}>
+              name:
+              {' '}
+              {name}
+              <br />
+              <input value={name} onChange={(e) => { obj.d[i].name = e.target.value; }} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* nested objects */}
+      <section>
+        <h2>nested objects</h2>
+
+        <input value={obj.e.nested.key} onChange={(e) => { obj.e.nested.key = e.target.value; }} />
+      </section>
     </div>
   );
 };
