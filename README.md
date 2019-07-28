@@ -33,8 +33,8 @@ const Example = () => {
       value={state.key}
       onChange={(e) => { state.key = e.target.value; }}
     />
-  )
-}
+  );
+};
 ```
 
 ### More examples
